@@ -84,7 +84,6 @@
     <Compile Include="ColorEventConsumer.cs" />
     <Compile Include="CustomConsumeObserver.cs" />
     <Compile Include="MessageCounter.cs" />
-    <Compile Include="MixedMessageConsumer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

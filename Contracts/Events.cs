@@ -6,9 +6,9 @@
 		string Type { get; set; }
 	}
 
-	public class JustAnEvent : IEvent
+	public class RedEvent : IEvent
 	{
-		public JustAnEvent()
+		public RedEvent()
 		{
 			Type = GetType().ToString();
 		}
@@ -28,20 +28,9 @@
 		public string Type { get; set; }
 	}
 
-	public class RedEvent : IEvent
+	public class BlueEvent : IEvent
 	{
-		public RedEvent()
-		{
-			Type = GetType().ToString();
-		}
-
-		public int Number { get; set; }
-		public string Type { get; set; }
-	}
-
-	public class UnhandledEvent : IEvent
-	{
-		public UnhandledEvent()
+		public BlueEvent()
 		{
 			Type = GetType().ToString();
 		}

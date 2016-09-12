@@ -8,12 +8,13 @@ using NLog;
 namespace Laboratory.Consumer
 {
 	internal class ColorEventConsumer :
-		IConsumer<GreenEvent>,
-		IConsumer<RedEvent>
+		IConsumer<RedEvent>,
+		IConsumer<BlueEvent>,
+		IConsumer<GreenEvent>
 	{
 		static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-		public Task Consume(ConsumeContext<GreenEvent> context)
+		public Task Consume(ConsumeContext<RedEvent> context)
 		{
 			return Task.Run(() =>
 			{
@@ -21,7 +22,15 @@ namespace Laboratory.Consumer
 			});
 		}
 
-		public Task Consume(ConsumeContext<RedEvent> context)
+		public Task Consume(ConsumeContext<BlueEvent> context)
+		{
+			return Task.Run(() =>
+			{
+				Handle(context.Message.GetType(), context.Message.Number);
+			});
+		}
+
+		public Task Consume(ConsumeContext<GreenEvent> context)
 		{
 			return Task.Run(() =>
 			{
@@ -33,9 +42,7 @@ namespace Laboratory.Consumer
 		{
 			MessageCounter.Receive();
 
-			Logger.Debug($"{type} {number} started.");
-
-			Logger.Debug($"{type} {number} finished.");
+			Logger.Debug($"Received message {number} of type {type}.");
 		}
 	}
 }

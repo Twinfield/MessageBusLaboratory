@@ -8,11 +8,11 @@ namespace Laboratory.Consumer
 	static class MessageCounter
 	{
 		static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+		static readonly Stopwatch Stopwatch = new Stopwatch();
 		static int received;
 		static int preConsumed;
 		static int postConsumed;
 		static int faulted;
-		static readonly Stopwatch Stopwatch = new Stopwatch();
 
 		public static int Received => received;
 
@@ -49,6 +49,7 @@ namespace Laboratory.Consumer
 		{
 			Interlocked.Increment(ref postConsumed);
 		}
+
 		public static void Faulted()
 		{
 			Interlocked.Increment(ref faulted);

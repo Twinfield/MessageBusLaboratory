@@ -51,7 +51,6 @@ namespace Laboratory.Consumer
 
 				busConfig.ReceiveEndpoint(host, QueueName, endpointConfig =>
 				{
-					endpointConfig.Consumer(() => new MixedMessageConsumer());
 					endpointConfig.Consumer<ColorEventConsumer>();
 				});
 			});
@@ -83,7 +82,6 @@ namespace Laboratory.Consumer
 
 				busConfig.ReceiveEndpoint(host, QueueName, endpointConfig =>
 				{
-					endpointConfig.Consumer(() => new MixedMessageConsumer());
 					endpointConfig.Consumer<ColorEventConsumer>();
 				});
 			});

@@ -14,6 +14,8 @@ namespace Laboratory.Consumer
 		static int postConsumed;
 		static int faulted;
 
+		static string Summary => $"Received {received} messages. Pre: {preConsumed}, post: {postConsumed}, faulted: {faulted}.";
+
 		public static int Received => received;
 
 		public static void Receive()
@@ -27,17 +29,19 @@ namespace Laboratory.Consumer
 
 		static void LogInitialSummary()
 		{
-			if (received != 0) return;
+			if (!IsFirstReceived()) return;
 
-			Logger.Info($"Received {received} messages. Pre: {preConsumed}, post: {postConsumed}, faulted: {faulted}.");
+			Logger.Info(Summary);
+
 			Stopwatch.Start();
 		}
 
 		static void LogSummary()
 		{
-			if (received % 100 == 0)
-				Logger.Info($"Received {received} messages. Pre: {preConsumed}, post: {postConsumed}, faulted: {faulted}. " +
-					$"{Stopwatch.Elapsed} since first message, {1000 * received / Stopwatch.ElapsedMilliseconds} msg/sec.");
+			if (!IsHundredthReceived()) return;
+
+			var messageRate = 1000 * received / Stopwatch.ElapsedMilliseconds;
+			Logger.Info($"{Summary} {Stopwatch.Elapsed}, {messageRate} msg/sec (avg).");
 		}
 
 		public static void PreConsume()
@@ -53,6 +57,16 @@ namespace Laboratory.Consumer
 		public static void Faulted()
 		{
 			Interlocked.Increment(ref faulted);
+		}
+
+		static bool IsFirstReceived()
+		{
+			return received == 0;
+		}
+
+		static bool IsHundredthReceived()
+		{
+			return received % 100 == 0;
 		}
 	}
 }

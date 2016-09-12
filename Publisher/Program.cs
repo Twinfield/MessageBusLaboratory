@@ -14,7 +14,7 @@ namespace Laboratory.Publisher
 	{
 		static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 		static IBusControl sendOnlyBus;
-		static readonly MessageFactory MessageFactory = new MessageFactory();
+		static readonly MessageFactory MessageFactory = new MessageFactory(int.Parse(ConfigurationManager.AppSettings["MessageSize"]));
 
 		static void Main(string[] args)
 		{

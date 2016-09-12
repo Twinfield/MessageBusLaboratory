@@ -9,8 +9,8 @@ namespace Laboratory.Consumer
 {
 	internal class ColorEventConsumer :
 		IConsumer<RedEvent>,
-		IConsumer<BlueEvent>,
-		IConsumer<GreenEvent>
+		IConsumer<GreenEvent>,
+		IConsumer<BlueEvent>
 	{
 		static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -22,7 +22,7 @@ namespace Laboratory.Consumer
 			});
 		}
 
-		public Task Consume(ConsumeContext<BlueEvent> context)
+		public Task Consume(ConsumeContext<GreenEvent> context)
 		{
 			return Task.Run(() =>
 			{
@@ -30,7 +30,7 @@ namespace Laboratory.Consumer
 			});
 		}
 
-		public Task Consume(ConsumeContext<GreenEvent> context)
+		public Task Consume(ConsumeContext<BlueEvent> context)
 		{
 			return Task.Run(() =>
 			{

@@ -4,6 +4,7 @@
 	{
 		int Number { get; set; }
 		string Type { get; set; }
+		string Content { get; set; }
 	}
 
 	public class RedEvent : IEvent
@@ -15,6 +16,7 @@
 
 		public int Number { get; set; }
 		public string Type { get; set; }
+		public string Content { get; set; }
 	}
 
 	public class GreenEvent : IEvent
@@ -26,6 +28,7 @@
 
 		public int Number { get; set; }
 		public string Type { get; set; }
+		public string Content { get; set; }
 	}
 
 	public class BlueEvent : IEvent
@@ -37,5 +40,6 @@
 
 		public int Number { get; set; }
 		public string Type { get; set; }
+		public string Content { get; set; }
 	}
 }

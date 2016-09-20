@@ -73,14 +73,6 @@ artifacts/
 # Chutzpah Test files
 _Chutzpah*
 
-# Visual C++ cache files
-ipch/
-*.aps
-*.ncb
-*.opensdf
-*.sdf
-*.cachefile
-
 # Visual Studio profiler
 *.psess
 *.vsp
@@ -188,28 +180,5 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
-# SQL Server files
-*.mdf
-*.ldf
-
-# Business Intelligence projects
-*.rdl.data
-*.bim.layout
-*.bim_*.settings
-
-# Microsoft Fakes
-FakesAssemblies/
-
-# Node.js Tools for Visual Studio
-.ntvs_analysis.dat
-
-# Visual Studio 6 build log
-*.plg
-
-# Visual Studio 6 workspace options file
-*.opt
-
-# LightSwitch generated files
-GeneratedArtifacts/
-_Pvt_Extensions/
-ModelManifest.xml
+# Configuration secrets
+*.secrets.config

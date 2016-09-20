@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,13 +22,18 @@ namespace Laboratory.Publisher
 			var useAzureServiceBus = args.Any(a => a.ToLower() == "azure");
 			var batchSize = int.Parse(ConfigurationManager.AppSettings["BatchSize"]);
 
+			var stopwatch = new Stopwatch();
+			stopwatch.Start();
+			
 			SetupAndStartBus(useAzureServiceBus);
 
 			PublishBatch(batchSize);
 
 			StopBus();
 
-			Logger.Info("Finished");
+			stopwatch.Stop();
+
+			Logger.Info($"Finished in {stopwatch.Elapsed}");
 		}
 
 		static void SetupAndStartBus(bool useAzureServiceBus)

@@ -89,6 +89,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="App.secrets.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.secrets.SAMPLE.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

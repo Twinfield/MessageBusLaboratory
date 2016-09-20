@@ -104,6 +104,10 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="App.secrets.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.secrets.SAMPLE.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

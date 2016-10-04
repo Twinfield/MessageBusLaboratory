@@ -22,8 +22,6 @@ namespace Laboratory.Publisher
 			var useAzureServiceBus = args.Any(a => a.ToLower() == "azure");
 			var batchSize = int.Parse(ConfigurationManager.AppSettings["BatchSize"]);
 
-			var stopwatch = new Stopwatch();
-			stopwatch.Start();
 			
 			SetupAndStartBus(useAzureServiceBus);
 
@@ -31,9 +29,7 @@ namespace Laboratory.Publisher
 
 			StopBus();
 
-			stopwatch.Stop();
-
-			Logger.Info($"Finished in {stopwatch.Elapsed}");
+			Logger.Info($"Finished");
 		}
 
 		static void SetupAndStartBus(bool useAzureServiceBus)
@@ -97,10 +93,16 @@ namespace Laboratory.Publisher
 		{
 			Logger.Info($"Publishing batch of {batchSize} messages...");
 
+			var stopwatch = new Stopwatch();
+			stopwatch.Start();
+
 			var messages = MessageFactory.CreateBatch(batchSize);
 			Task.WaitAll(messages.Select(message => Publish(sendOnlyBus, message)).ToArray());
 
-			Logger.Info("Messages published.");
+			stopwatch.Stop();
+
+			var messageRate = 1000 * batchSize / stopwatch.ElapsedMilliseconds;
+			Logger.Info($"Messages published in {stopwatch.Elapsed}, at a rate of {messageRate}.");
 		}
 
 		static Task Publish<T>(IPublishEndpoint bus, T message)
